@@ -1,4 +1,11 @@
+mod temperatura;
+mod peso;
+mod longitud;
+
 use std::io;
+use temperatura::{convertir_c_a_f, convertir_c_a_k, convertir_f_a_c, convertir_k_a_c};
+use longitud::{convertir_km_a_ml, convertir_ml_a_km, convertir_p_a_mt, convertir_mt_a_p};
+use peso::{convertir_kg_a_l, convertir_l_a_kg, convertir_o_a_kg, convertir_kg_a_o};
 
 fn main() {
 
@@ -19,9 +26,18 @@ fn main() {
             .expect("Failed to read line");
 
         match choice.trim().parse() {
-            Ok(1) => MenuTemp(),
-            Ok(2) => MenuPeso(),
-            Ok(3) => MenuLongitud(),
+            Ok(1) => {
+                menu_temp();
+                break;
+            }
+            Ok(2) => {
+                menu_peso();
+                break;
+            }
+            Ok(3) => {
+                menu_longitud();
+                break;
+            }
             Ok(4) => {
                 println!("hasta luego");
                 break;
@@ -31,7 +47,7 @@ fn main() {
     }
 }
 
-fn MenuPeso() {
+fn menu_peso() {
 
     println!("=== MENU DE PESO ===");
 
@@ -51,57 +67,34 @@ fn MenuPeso() {
             .expect("Failed to read line");
 
         match choice.trim().parse() {
-            Ok(1) => crate::convertir_kg_A_L(),
-            Ok(2) => crate::convertir_L_A_Kg(),
-            Ok(3) => crate::convertir_Kg_A_O(),
-            Ok(4) => crate::convertir_O_A_Kg(),
-            Ok(5) => main(),
+            Ok(1) => {
+                convertir_kg_a_l();
+                break;
+            }
+            Ok(2) => {
+                convertir_l_a_kg();
+                break;
+            }
+            Ok(3) => {
+                convertir_kg_a_o();
+                break;
+            }
+            Ok(4) => {
+                convertir_o_a_kg();
+                break;
+            }
+            Ok(5) => {
+                main();
+                break;
+            }
             _ => println!("por favor ingresa una opcion valida"),
         }
 
     }
 }
 
-fn convertir_kg_A_L() {
 
-    println!("Ingrese el valor en kilogramos");
-    let kilogramos = obtener_numero();
-    let libras = kilogramos * 2.20462;
-    println!("{}Kg = {:.1}L", kilogramos, libras);
-    MenuPeso();
-
-}
-
-fn convertir_L_A_Kg() {
-
-    println!("Ingrese el valor en libras");
-    let libras = obtener_numero();
-    let kilogramos = libras / 2.20462;
-    println!("{}L = {:.1}Kg", libras, kilogramos);
-    MenuPeso();
-
-}
-
-fn convertir_Kg_A_O() {
-
-    println!("Ingrese el valor en kilogramos");
-    let kilogramos = obtener_numero();
-    let onzas = kilogramos * 35.274;
-    println!("{}Kg = {:.1}O", kilogramos, onzas);
-    MenuPeso();
-
-}
-
-fn convertir_O_A_Kg() {
-
-    println!("Ingrese el valor en onzas");
-    let onzas = obtener_numero();
-    let kilogramos = onzas / 35.274;
-    println!("{}O = {:.1}Kg", onzas, kilogramos);
-    MenuPeso();
-
-}
-fn MenuLongitud() {
+fn menu_longitud() {
 
     println!("=== MENU DE LONGITUD ===");
 
@@ -121,59 +114,34 @@ fn MenuLongitud() {
             .expect("Failed to read line");
 
         match choice.trim().parse() {
-            Ok(1) => crate::convertir_Mt_A_P(),
-            Ok(2) => crate::convertir_P_A_Mt(),
-            Ok(3) => crate::convertir_Km_A_Ml(),
-            Ok(4) => crate::convertir_Ml_A_Km(),
-            Ok(5) => main(),
+            Ok(1) => {
+            convertir_mt_a_p();
+            break;
+        }
+            Ok(2) => {
+                convertir_p_a_mt();
+                break;
+            }
+            Ok(3) => {
+                convertir_km_a_ml();
+                break;
+            }
+            Ok(4) => {
+                convertir_ml_a_km();
+                break;
+            }
+            Ok(5) => {
+                main();
+                break;
+            }
             _ => println!("por favor ingresa una opcion valida"),
         }
 
     }
 }
 
-fn convertir_Mt_A_P() {
 
-    println!("Ingrese el valor en Metros");
-    let Metros = obtener_numero();
-    let pies = Metros * 3.28084;
-    println!("{}Mt = {:.1}P", Metros, pies);
-    MenuLongitud();
-
-}
-
-fn convertir_P_A_Mt() {
-
-    println!("Ingrese el valor en pies");
-    let pies = obtener_numero();
-    let Metros = pies / 3.28084;
-    println!("{}P = {:.1}Mt", pies, Metros);
-    MenuLongitud();
-
-}
-
-fn convertir_Km_A_Ml() {
-
-    println!("Ingrese el valor en kilometros");
-    let kilometros = obtener_numero();
-    let millas = kilometros * 0.621371;
-    println!("{}Km = {:.1}Ml", kilometros, millas);
-    MenuLongitud();
-
-
-}
-
-fn convertir_Ml_A_Km() {
-
-    println!("Ingrese el valor en millas");
-    let millas = obtener_numero();
-    let kilometros = millas / 0.621371;
-    println!("{}Ml = {:.1}Km", millas, kilometros);
-    MenuLongitud();
-
-
-}
-fn MenuTemp() {
+fn menu_temp() {
     println!("=== MENU DE TEMPERATURA ===");
 
     loop {
@@ -191,50 +159,31 @@ fn MenuTemp() {
             .expect("Failed to read line");
 
         match choice.trim().parse() {
-            Ok(1) => convertir_c_A_f(),
-            Ok(2) => convertir_f_A_c(),
-            Ok(3) => convertir_c_A_k(),
-            Ok(4) => convertir_k_A_c(),
-            Ok(5) => main(),
+            Ok(1) => {
+                convertir_c_a_f();
+                break;
+            }
+            Ok(2) => {
+                convertir_f_a_c();
+                break;
+            }
+            Ok(3) => {
+                convertir_c_a_k();
+                break;
+            }
+            Ok(4) => {
+                convertir_k_a_c();
+                break;
+            }
+            Ok(5) => {
+                main();
+                break;
+            }
             _ => println!("por favor ingresa una opcion valida"),
         }
     }
 }
-fn convertir_c_A_f() {
-    println!("Ingrese el valor en celsius");
-    let celsius = obtener_numero();
-    let fahrenheit = celsius * 1.8 + 32.0;
-    println!("{}°C = {:.1}°F", celsius, fahrenheit);
-    MenuTemp();
-}
 
-fn convertir_f_A_c() {
-    println!("Ingresa grados Fahrenheit:");
-    let fahrenheit = obtener_numero();
-    let celsius = (fahrenheit - 32.0) / 1.8;
-    println!("{}°F = {:.1}°C", fahrenheit, celsius);
-    MenuTemp();
-}
-
-fn convertir_c_A_k() {
-
-    println!("Ingresa grados celsius:");
-    let celsius = obtener_numero();
-    let kelvin = celsius + 273.5;
-    println!("{}°C = {:.1}°K", celsius, kelvin);
-    MenuTemp();
-
-}
-
-fn convertir_k_A_c() {
-
-    println!("Ingresa grados kelvin:");
-    let kelvin = obtener_numero();
-    let celsius = kelvin - 273.5;
-    println!("{}°K = {:.1}°C", kelvin, celsius);
-    MenuTemp();
-
-}
 
 fn obtener_numero() -> f64 {
     let mut input = String::new();
