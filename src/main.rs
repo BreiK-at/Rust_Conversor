@@ -7,6 +7,7 @@ use temperatura::{convertir_c_a_f, convertir_c_a_k, convertir_f_a_c, convertir_k
 use longitud::{convertir_km_a_ml, convertir_ml_a_km, convertir_p_a_mt, convertir_mt_a_p};
 use peso::{convertir_kg_a_l, convertir_l_a_kg, convertir_o_a_kg, convertir_kg_a_o};
 
+//funcion principal
 fn main() {
 
     println!("=== CONVERSOR DE TEMPERATURA Y PESO ===");
